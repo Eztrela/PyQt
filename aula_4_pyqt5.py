@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QToolTip
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QToolTip, QLabel
+from PyQt5 import QtGui
 
 class Window(QMainWindow):
   def __init__(self,) -> None:
@@ -22,6 +23,17 @@ class Window(QMainWindow):
     btn2.setStyleSheet('QPushButton {background-color:red};font:bold;font-size:20px')
     btn2.clicked.connect(self.btn2_click)
 
+    self.label_1 = QLabel(self)
+    self.label_1.setText("Aperte algum botão")
+    self.label_1.move(50,50)
+    self.label_1.setStyleSheet('QLabel {font:bold;font-size:25px;color:"blue"}')
+    self.label_1.resize(400,40)
+
+    self.carro_img = QLabel(self)
+    self.carro_img.move(50,400)
+    # self.carro_img.setPixmap(QtGui.QPixmap('carro1.png'))
+    self.carro_img.resize(400,200)
+
     self.LoadWindow()
 
   def LoadWindow(self):
@@ -30,11 +42,15 @@ class Window(QMainWindow):
     self.show()
   
   def btn1_click(self):
-    print('O botao 1 foi clicado')
+    self.label_1.setText('Carro 1')
+    self.label_1.setStyleSheet('QLabel {font:bold;font-size:25px;color:"green"}')
+    self.carro_img.setPixmap(QtGui.QPixmap('carro1.png'))
 
 
   def btn2_click(self):
-    print('O botao 2 foi clicado')
+    self.label_1.setText('Carro2')
+    self.label_1.setStyleSheet('QLabel {font:bold;font-size:25px;color:"red"}')
+    self.carro_img.setPixmap(QtGui.QPixmap('carro2.png'))
 
 app = QApplication(sys.argv)
 window = Window()
